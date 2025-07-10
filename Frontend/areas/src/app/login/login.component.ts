@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { ApiService } from '../../service/api.service';
+import { AuthService } from '../../service/auth.service';
 import { MessageService } from 'primeng/api';
 
 @Component({
@@ -20,37 +20,55 @@ export class LoginComponent {
   error = '';
 
   constructor(
-    private apiService: ApiService,
+    private authService: AuthService,
     private router: Router,
     private messageService: MessageService
   ) {}
 
-  login() {
+  onLogin() {
     if (this.loading) return;
     
     this.loading = true;
     this.error = '';
 
-    this.apiService.login(this.credentials.username, this.credentials.password)
+    this.authService.login(this.credentials.username, this.credentials.password)
       .subscribe({
         next: (response) => {
           this.loading = false;
+          
+          // Guardar token en localStorage
+          if (response.token) {
+            localStorage.setItem('token', response.token);
+          }
+          
+          // Mostrar mensaje de éxito
           this.messageService.add({
             severity: 'success',
             summary: 'Bienvenido',
             detail: 'Inicio de sesión exitoso'
           });
-          this.router.navigate(['/dashboard']);
+          
+          // Redirigir a la página de inicio
+          this.router.navigate(['/inicio']);
         },
         error: (err) => {
           this.loading = false;
-          this.error = err.error?.detail || 'Credenciales incorrectas';
+          
+          // Manejar diferentes tipos de errores
+          if (err.status === 401) {
+            this.error = 'Credenciales incorrectas';
+          } else if (err.status === 0) {
+            this.error = 'No se puede conectar al servidor';
+          } else {
+            this.error = err.error?.message || 'Error al iniciar sesión';
+          }
+          
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
             detail: this.error
           });
         }
-      });
-  }
-}
+      });
+  }
+} 
