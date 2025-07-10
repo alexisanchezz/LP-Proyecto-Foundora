@@ -1,0 +1,29 @@
+<div class="tesoro-container">
+  <div class="info-box">
+    <h2><i class="pi pi-info-circle"></i> Búsqueda del Tesoro</h2>
+    <p>¡Únete a la Gran Búsqueda del Tesoro!</p>
+
+    <p>
+      ¿Te gustan los desafíos y las aventuras? ¡Esta es tu oportunidad!
+      Participa en nuestra emocionante Búsqueda del Tesoro con objetos perdidos
+      que nadie reclamó en más de tres meses.
+    </p>
+
+    <p>
+      <i class="pi pi-search"></i> Descubre pistas, resuelve enigmas y recupera
+      tesoros olvidados mientras te diviertes con amigos y familia.
+    </p>
+
+    <div class="detalles">
+      <p>📢 ¡No te lo pierdas! La aventura comienza pronto.</p>
+      <p>📍 Lugar: {{ lugar }}</p>
+      <p>📅 Fecha y hora: {{ fechaEvento }}</p>
+    </div>
+
+    <button pButton type="button" label="Jugar" (click)="jugar()"></button>
+  </div>
+
+  <div class="mapa-box">
+    <img src="assets/tesoro.jpg" alt="Mapa del tesoro" />
+  </div>
+</div>

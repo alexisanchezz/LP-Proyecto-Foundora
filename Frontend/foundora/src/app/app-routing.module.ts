@@ -5,10 +5,11 @@ import { AreasComponent } from './areas/areas.component';
 import { ObjetosComponent } from './objetos/objetos.component';
 import { RegistroComponent } from './registro/registro.component';
 import { InicioComponent } from './inicio/inicio.component'; 
+import { TesoroComponent } from './tesoro/tesoro.component';  
 import { AuthGuard } from '../service/auth.guard'; 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' },  // Redirección exacta
+  { path: '', redirectTo: '/inicio', pathMatch: 'full' },  // Redirección exacta
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { 
@@ -26,7 +27,12 @@ const routes: Routes = [
     component: InicioComponent,
     canActivate: [AuthGuard] 
   },
-  { path: '**', redirectTo: '/login' }  // Ruta comodín para cualquier otra URL
+    { 
+    path: 'tesoro',
+    component: TesoroComponent,
+    canActivate: [AuthGuard] 
+  },
+  { path: '**', redirectTo: '/inicio' }  // Ruta comodín para cualquier otra URL
 ];
 
 @NgModule({

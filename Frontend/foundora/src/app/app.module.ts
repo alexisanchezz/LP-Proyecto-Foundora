@@ -30,10 +30,11 @@ import { AreasComponent } from './areas/areas.component';
 import { RegistroComponent } from './registro/registro.component';
 import { ObjetosComponent } from './objetos/objetos.component';
 import { InicioComponent } from './inicio/inicio.component';
+import { TesoroComponent } from './tesoro/tesoro.component';
+
 
 // Interceptors
 import { TokenInterceptor } from '../service/token.interceptor'; 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,8 @@ import { TokenInterceptor } from '../service/token.interceptor';
     LoginComponent,
     RegistroComponent,
     ObjetosComponent,
-    InicioComponent, 
+    InicioComponent,
+    TesoroComponent, 
   ],
   imports: [
     BrowserModule,
