@@ -1,13 +1,14 @@
 import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { Observable } from "rxjs";   
+import { Observable } from "rxjs";
 import { Objeto } from "../model/Objeto.model";
 
 @Injectable({
   providedIn: "root"
 })
 export class ApiService {
-  private ApiUrl = "http://localhost:8000/api/"; // Asegúrate que coincida con tu backend
+  private ApiUrl = "http://localhost:8000/api/"; // Solo la base, para evitar doble "objetos"
+  public baseUrl = "http://localhost:8000/"; // Base URL para imágenes y recursos
 
   constructor(private http: HttpClient) {}
 
@@ -39,24 +40,24 @@ export class ApiService {
   
   // Registro de usuario
   registrarUsuario(usuario: any): Observable<any> {
-  // Usa http directamente sin el interceptor para esta solicitud
-  return this.http.post(`${this.ApiUrl}usuarios/`, usuario, {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-      'X-API-KEY': 'eCNCVrBt7rw5eS6i2XtR9c'
+    // Usa http directamente sin el interceptor para esta solicitud
+    return this.http.post(`${this.ApiUrl}usuarios/`, usuario, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'X-API-KEY': 'eCNCVrBt7rw5eS6i2XtR9c'
       })
-   });
+    });
   }
 
   // Login (obtener token)
   login(username: string, password: string): Observable<any> {
-  const url = `${this.ApiUrl}obtener-token/`;  // Asegúrate que coincida con tu backend
-  return this.http.post(url, { username, password }, {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-  });
-}
+    const url = `${this.ApiUrl}obtener-token/`;
+    return this.http.post(url, { username, password }, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+  }
 
   /* ==================== */
   /* OPERACIONES CRUD     */
@@ -76,6 +77,28 @@ export class ApiService {
       `${this.ApiUrl}objetos/`,
       objeto,
       this.httpOptions
+    );
+  }
+
+  // Crear objeto con imagen y campos personalizados para el backend
+  postObjetoFormDataBackend(objetoBackend: any, imagen: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('nombre_objeto', objetoBackend.nombre_objeto);
+    formData.append('descripcion', objetoBackend.descripcion);
+    formData.append('categoria', objetoBackend.categoria);
+    formData.append('fecha', objetoBackend.fecha);
+    formData.append('lugar', objetoBackend.lugar);
+    formData.append('estado', objetoBackend.estado);
+    formData.append('usuario', objetoBackend.usuario.toString());
+    if (imagen) {
+      formData.append('imagen', imagen);
+    }
+    return this.http.post(
+      `${this.ApiUrl}objetos/`,
+      formData,
+      {
+        headers: this.getAuthHeaders().delete('Content-Type')
+      }
     );
   }
 

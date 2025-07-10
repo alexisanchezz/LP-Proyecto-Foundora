@@ -1,75 +1,79 @@
-<h2>Objetos Perdidos - Foundora</h2>
-<!--READ -> Tabla-->
-<p-button label="Nuevo Objeto" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
-<p-table [value]="objetos" [tableStyle]="{'min-width': '50rem'}">
-    <ng-template pTemplate="header">
-        <tr>
-            <th style="width:20%">ID</th>
-            <th style="width:20%">Nombre</th>
-            <th style="width:20%">Descripcion</th>
-            <th style="width:20%">Categoria</th>
-            <th style="width:20%"></th>
-        </tr>
-    </ng-template>
-    
-    <ng-template pTemplate="body" let-objeto let-ri="rowIndex">
-        <tr [pEditableRow]="objeto">
-            <td> 
-                {{ objeto.id }}
-            </td>
-            <td>
-               {{ objeto.nombre }}
-            </td>
-            <td> 
-                {{ objeto.descripcion }}
-            </td>
-            <td>
-                 {{ objeto.categoria }}
-            </td>
-            <td>
-                <div class="flex items-center justify-center gap-2">
-                    <button 
-                        pButton
-                        pRipple
-                        type="button" 
-                        icon="pi pi-pencil"
-                        (click)="editarObjeto(objeto)"
-                        text
-                        rounded
-                        severity="secondary"
-                    ></button>  
-                    <button 
-                        pButton
-                        pRipple
-                        type="button" 
-                        icon="pi pi-times"
-                        (click)="eliminarObjeto(objeto)"
-                        text
-                        rounded
-                        severity="secondary"
-                    ></button>
-                </div>
-            </td>
-        </tr>
-    </ng-template>
-</p-table>  
+<!-- Diálogo para crear o editar objetos -->
+<p-dialog 
+  header="{{ tituloDialogo }}" 
+  [(visible)]="visible" 
+  [modal]="true" 
+  [closable]="false" 
+  [style]="{width: '30vw'}">
 
-<!--CREATE Y UPDATE -> Formulario--> 
-<p-dialog header="{{tituloDialogo}}" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }"> 
-    <div class="flex items-center gap-4 mb-4">
-        <label for="nombre" class="font-semibold w-24">Nombre</label>
-        <input pInputText id="nombre" class="flex-auto" autocomplete="off" [(ngModel)]="objetoDialogo.nombre"/>
-    </div> 
-    <div class="flex items-center gap-4 mb-4">
-        <label for="descripcion" class="font-semibold w-24">Descripcion</label>
-        <input pInputText id="descripcion" class="flex-auto" autocomplete="off" [(ngModel)]="objetoDialogo.descripcion"/>
-    </div> 
-    <div class="flex items-center gap-4 mb-4">
-        <label for="categoria" class="font-semibold w-24">Categoria</label>
-        <input pInputText id="categoria" class="flex-auto" autocomplete="off" [(ngModel)]="objetoDialogo.categoria"/>
-    </div> 
-    <div class="flex justify-end gap-2">
-        <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
-        <p-button label="Guardar" (click)="guardarObjeto()" />
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="nombre">Nombre</label>
+      <input id="nombre" pInputText [(ngModel)]="objetoDialogo.nombre" name="nombre" />
     </div>
-</p-dialog> 
+
+    <div class="p-field">
+      <label for="descripcion">Descripción</label>
+      <textarea id="descripcion" pInputTextarea [(ngModel)]="objetoDialogo.descripcion" name="descripcion"></textarea>
+    </div>
+
+    <div class="p-field">
+      <label for="categoria">Categoría</label>
+      <input id="categoria" pInputText [(ngModel)]="objetoDialogo.categoria" name="categoria" />
+    </div>
+
+    <div class="p-field">
+      <label for="lugar">Lugar</label>
+      <input id="lugar" pInputText [(ngModel)]="objetoDialogo.lugar" name="lugar" />
+    </div>
+
+    <div class="p-field">
+      <label for="fecha">Fecha</label>
+      <input id="fecha" type="date" pInputText [(ngModel)]="objetoDialogo.fecha" name="fecha" />
+    </div>
+
+    <div class="p-field">
+      <label for="imagen">Imagen</label>
+      <input type="file" (change)="onImagenSeleccionada($event)" />
+    </div>
+  </div>
+
+  <ng-template pTemplate="footer">
+    <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="visible = false"></button>
+    <button pButton type="button" label="Guardar" class="p-button-primary" (click)="guardarObjeto()"></button>
+  </ng-template>
+</p-dialog>
+
+<!-- Botón para abrir el diálogo de nuevo objeto -->
+<button pButton type="button" icon="pi pi-plus" label="Nuevo objeto" class="mb-3" (click)="abrirDialogo()"></button>
+
+<!-- Tabla de objetos -->
+<p-table [value]="objetos">
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th>Categoría</th>
+      <th>Lugar</th>
+      <th>Fecha</th>
+      <th>Imagen</th>
+      <th>Acciones</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-obj>
+    <tr>
+      <td>{{ obj.nombre }}</td>
+      <td>{{ obj.descripcion }}</td>
+      <td>{{ obj.categoria }}</td>
+      <td>{{ obj.lugar }}</td>
+      <td>{{ obj.fecha | date }}</td>
+      <td>
+        <img *ngIf="obj.imagen" [src]="api.baseUrl + obj.imagen" alt="Imagen" width="80" />
+      </td>
+      <td>
+        <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text" (click)="editarObjeto(obj)"></button>
+        <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-text" (click)="eliminarObjeto(obj.id)"></button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>

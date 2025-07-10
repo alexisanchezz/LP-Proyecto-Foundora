@@ -52,8 +52,7 @@ class Notificacion(models.Model):
 #Clase Objeto
 class Objeto(models.Model):
     nombre_objeto = models.CharField(max_length=100)
-    descripcion = models.TextField()
-    descripcion_oculta = models.TextField()
+    descripcion = models.TextField() 
     categoria = models.CharField(max_length=50)
     fecha = models.DateField()
     lugar = models.CharField(max_length=100)

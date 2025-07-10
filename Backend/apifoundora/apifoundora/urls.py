@@ -12,5 +12,5 @@ router.register(r'recompensas', views.RecompensaViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('api.urls')),
-]   
+    path('api/', include('api.urls')),  # ✅ esto ahora sí funciona
+] 

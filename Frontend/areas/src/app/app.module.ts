@@ -32,8 +32,7 @@ import { ObjetosComponent } from './objetos/objetos.component';
 import { InicioComponent } from './inicio/inicio.component';
 
 // Interceptors
-import { TokenInterceptor } from '../service/token.interceptor';
-import { PanelComponent } from './panel/panel.component';
+import { TokenInterceptor } from '../service/token.interceptor'; 
 
 @NgModule({
   declarations: [
@@ -42,8 +41,7 @@ import { PanelComponent } from './panel/panel.component';
     LoginComponent,
     RegistroComponent,
     ObjetosComponent,
-    InicioComponent,
-    PanelComponent  
+    InicioComponent, 
   ],
   imports: [
     BrowserModule,
