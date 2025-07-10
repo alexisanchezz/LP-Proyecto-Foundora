@@ -1,0 +1,43 @@
+<div class="login-wrapper">
+  <div class="login-container">
+    
+    <!-- Logo lateral -->
+    <div class="logo-section"> 
+      <h2>Bienvenido a Fundora System</h2>
+      <img src="assets/login fundora.jpg" alt="Logo Fundora"> 
+    </div>
+
+    <!-- Formulario -->
+    <div class="form-box">
+      <h3>Iniciar Sesión</h3>
+      <form class="login-form" (ngSubmit)="login()" #loginForm="ngForm">
+        <div class="form-group">
+          <label for="username">Usuario</label>
+          <input id="username" type="text" [(ngModel)]="credentials.username" 
+                 name="username" required placeholder="Ingresa tu usuario" />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input id="password" type="password" [(ngModel)]="credentials.password" 
+                 name="password" required placeholder="Ingresa tu contraseña" />
+        </div>
+
+        <button type="submit" [disabled]="loginForm.invalid || loading">
+          <span *ngIf="!loading">Ingresar</span>
+          <span *ngIf="loading">
+            <i class="pi pi-spinner pi-spin"></i> Procesando...
+          </span>
+        </button>
+
+        <div class="register-link">
+          ¿No tienes cuenta? 
+          <a [routerLink]="['/registro']" routerLinkActive="active">Regístrate aquí</a>
+        </div>
+
+        <p-message *ngIf="error" severity="error" [text]="error" class="mt-2"></p-message>
+      </form>
+    </div>
+
+  </div>
+</div>

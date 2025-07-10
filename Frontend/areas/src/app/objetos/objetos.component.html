@@ -1,0 +1,75 @@
+<h2>Objetos Perdidos - Foundora</h2>
+<!--READ -> Tabla-->
+<p-button label="Nuevo Objeto" icon="pi pi-plus" class="mr-2" (onClick)="abrirDialogo()" />
+<p-table [value]="objetos" [tableStyle]="{'min-width': '50rem'}">
+    <ng-template pTemplate="header">
+        <tr>
+            <th style="width:20%">ID</th>
+            <th style="width:20%">Nombre</th>
+            <th style="width:20%">Descripcion</th>
+            <th style="width:20%">Categoria</th>
+            <th style="width:20%"></th>
+        </tr>
+    </ng-template>
+    
+    <ng-template pTemplate="body" let-objeto let-ri="rowIndex">
+        <tr [pEditableRow]="objeto">
+            <td> 
+                {{ objeto.id }}
+            </td>
+            <td>
+               {{ objeto.nombre }}
+            </td>
+            <td> 
+                {{ objeto.descripcion }}
+            </td>
+            <td>
+                 {{ objeto.categoria }}
+            </td>
+            <td>
+                <div class="flex items-center justify-center gap-2">
+                    <button 
+                        pButton
+                        pRipple
+                        type="button" 
+                        icon="pi pi-pencil"
+                        (click)="editarObjeto(objeto)"
+                        text
+                        rounded
+                        severity="secondary"
+                    ></button>  
+                    <button 
+                        pButton
+                        pRipple
+                        type="button" 
+                        icon="pi pi-times"
+                        (click)="eliminarObjeto(objeto)"
+                        text
+                        rounded
+                        severity="secondary"
+                    ></button>
+                </div>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>  
+
+<!--CREATE Y UPDATE -> Formulario--> 
+<p-dialog header="{{tituloDialogo}}" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }"> 
+    <div class="flex items-center gap-4 mb-4">
+        <label for="nombre" class="font-semibold w-24">Nombre</label>
+        <input pInputText id="nombre" class="flex-auto" autocomplete="off" [(ngModel)]="objetoDialogo.nombre"/>
+    </div> 
+    <div class="flex items-center gap-4 mb-4">
+        <label for="descripcion" class="font-semibold w-24">Descripcion</label>
+        <input pInputText id="descripcion" class="flex-auto" autocomplete="off" [(ngModel)]="objetoDialogo.descripcion"/>
+    </div> 
+    <div class="flex items-center gap-4 mb-4">
+        <label for="categoria" class="font-semibold w-24">Categoria</label>
+        <input pInputText id="categoria" class="flex-auto" autocomplete="off" [(ngModel)]="objetoDialogo.categoria"/>
+    </div> 
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancelar" severity="secondary" (click)="visible = false" />
+        <p-button label="Guardar" (click)="guardarObjeto()" />
+    </div>
+</p-dialog> 

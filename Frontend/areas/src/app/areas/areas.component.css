@@ -1,0 +1,16 @@
+.login-bg {
+  background: linear-gradient(135deg, #021ff9, #fe0202);
+  background-size: cover;
+  background-position: center;
+  padding: 1rem;
+}
+
+@media (max-width: 576px) {
+  p-card {
+    padding: 0 !important;
+  }
+
+  .p-card .p-card-body {
+    padding: 1.5rem !important;
+  }
+}

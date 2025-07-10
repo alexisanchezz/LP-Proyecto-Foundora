@@ -1,0 +1,126 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+header {
+  border-bottom: 1px solid #ddd;
+  padding: 20px 40px;
+  background-color: white;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-left {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.nav-right a {
+  margin-right: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.btn-iniciar{   
+  margin-right: 10px;
+  padding: 4px 19px;
+  border: 1px solid #ccc;
+  background: #272727;
+  border-radius: 8px;
+  cursor: pointer;
+}
+ 
+.btn-registrar {
+  margin-right: 10px;
+  padding: 4px 15px;
+  border: 1px solid #ccc;
+  background: #272727;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+
+.container {
+  display: flex;
+  padding: 40px;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.form-section {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  width: 350px;
+}
+
+.form-section h2 {
+  margin-bottom: 10px;
+}
+
+.form-section p {
+  margin-bottom: 20px;
+  font-size: 14px;
+  color: #666;
+}
+
+form label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: 600;
+}
+
+form input,
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+form textarea {
+  height: 70px;
+  resize: vertical;
+}
+
+.btn-entregar,
+.btn-encontrado {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.btn-entregar {
+  background-color: #e0e0e0;
+}
+
+.btn-encontrado {
+  background-color: #222;
+  color: white;
+}
+
+.image-section img {
+  max-width: 500px; 
+}
+
+ 

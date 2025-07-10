@@ -1,0 +1,82 @@
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+
+// Angular Modules
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
+// PrimeNG Modules
+import { providePrimeNG } from 'primeng/config';
+import { MessageService } from 'primeng/api'; // Servicio añadido
+import Lara from '@primeng/themes/lara';
+import { CardModule } from 'primeng/card';
+import { MessageModule } from 'primeng/message';
+import { ButtonModule } from 'primeng/button';
+import { TableModule } from 'primeng/table'; 
+import { SelectModule } from 'primeng/select';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DialogModule } from 'primeng/dialog';
+import { InputTextModule } from 'primeng/inputtext';
+import { PasswordModule } from 'primeng/password';
+import { CheckboxModule } from 'primeng/checkbox';
+import { ToastModule } from 'primeng/toast';
+
+// Components
+import { LoginComponent } from './login/login.component';
+import { AreasComponent } from './areas/areas.component';
+import { RegistroComponent } from './registro/registro.component';
+import { ObjetosComponent } from './objetos/objetos.component';
+import { InicioComponent } from './inicio/inicio.component';
+
+// Interceptors
+import { TokenInterceptor } from '../service/token.interceptor';
+import { PanelComponent } from './panel/panel.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    AreasComponent,
+    LoginComponent,
+    RegistroComponent,
+    ObjetosComponent,
+    InicioComponent,
+    PanelComponent  
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    // PrimeNG Modules
+    CardModule,
+    MessageModule,
+    ButtonModule,
+    InputTextModule,
+    PasswordModule,
+    CheckboxModule,
+    TableModule,
+    SelectModule,
+    ConfirmDialogModule,
+    DialogModule,
+    ToastModule,
+  ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
+    provideAnimations(),
+    providePrimeNG({
+      theme: {
+        preset: Lara,
+        options: {
+          colorScheme: 'light',
+          primaryColor: '#00bcd4'
+        }
+      }
+    }),
+    MessageService, // Servicio añadido aquí
+  ],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
