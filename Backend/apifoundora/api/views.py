@@ -3,8 +3,8 @@ from rest_framework.permissions import AllowAny
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.response import Response
 from rest_framework.authtoken.models import Token
-from .models import Usuario, Notificacion, Objeto, Publicidad, Recompensa
-from .serializers import UsuarioSerializer, NotificacionSerializer, ObjetoSerializer, PublicidadSerializer, RecompensaSerializer
+from .models import Usuario, Notificacion, Objeto, ObjetoEncontrado, Publicidad, Recompensa
+from .serializers import UsuarioSerializer, NotificacionSerializer, ObjetoSerializer, ObjetoEncontradoSerializer, PublicidadSerializer, RecompensaSerializer
 from django.contrib.auth.hashers import make_password
 
 # Vista para el registro y gestión de usuarios
@@ -22,6 +22,11 @@ class NotificacionViewSet(viewsets.ModelViewSet):
 class ObjetoViewSet(viewsets.ModelViewSet):
     queryset = Objeto.objects.all()
     serializer_class = ObjetoSerializer
+    
+# Vista para objetos encontrados
+class ObjetoEncontradoViewSet(viewsets.ModelViewSet):
+    queryset = ObjetoEncontrado.objects.all()
+    serializer_class = ObjetoEncontradoSerializer
 
 # Vista para publicidad
 class PublicidadViewSet(viewsets.ModelViewSet):

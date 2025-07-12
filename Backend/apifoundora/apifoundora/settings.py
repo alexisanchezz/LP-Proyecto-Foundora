@@ -1,4 +1,6 @@
 from pathlib import Path
+import os
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -82,6 +84,9 @@ CORS_ALLOW_METHODS = [
 
 AUTH_USER_MODEL = 'api.Usuario'
 
+MEDIA_URL = '/objetos/'  # Usa la ruta que ya tienes
+MEDIA_ROOT = os.path.join(BASE_DIR, 'objetos')  # Apunta a tu carpeta existente
+
 ROOT_URLCONF = 'apifoundora.urls'
 
 TEMPLATES = [
@@ -157,3 +162,4 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer', 'Token'),
 }
+

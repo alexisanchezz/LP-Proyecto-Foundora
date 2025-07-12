@@ -62,6 +62,20 @@ class Objeto(models.Model):
 
     def __str__(self):
         return self.nombre_objeto
+    
+#Clase ObjetoEncontrado
+class ObjetoEncontrado(models.Model):
+    nombre_objeto = models.CharField(max_length=100)
+    descripcion = models.TextField()
+    categoria = models.CharField(max_length=50)
+    lugar = models.CharField(max_length=100)
+    fecha = models.DateField()
+    imagen = models.ImageField(upload_to='objetos_encontrados/')  # Carpeta específica
+    estado = models.CharField(max_length=50, default='encontrado')  # Valor por defecto
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, related_name='objetos_encontrados')  # Relación con usuario
+
+    def __str__(self):
+        return self.nombre_objeto
 
 #Clase Publicidad
 class Publicidad(models.Model):

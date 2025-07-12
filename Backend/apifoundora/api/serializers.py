@@ -1,6 +1,6 @@
 from django.contrib.auth.hashers import make_password
 from rest_framework import serializers
-from .models import Usuario, Notificacion, Objeto, Publicidad, Recompensa
+from .models import Usuario, Notificacion, Objeto, ObjetoEncontrado,Publicidad, Recompensa
 
 class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
@@ -36,6 +36,21 @@ class ObjetoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Objeto  # Corregido: sin "models." y nombre exacto
         fields = '__all__'
+
+class ObjetoEncontradoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ObjetoEncontrado
+        fields = '__all__'
+        extra_kwargs = {
+            'estado': {'read_only': True},  # Auto-asignado por el backend
+            'usuario': {'read_only': True}  # Auto-asignado por el backend
+        }
+
+    def create(self, validated_data):
+        """Auto-asigna usuario y estado al crear"""
+        validated_data['usuario'] = self.context['request'].user
+        validated_data['estado'] = 'encontrado'
+        return super().create(validated_data)
 
 class PublicidadSerializer(serializers.ModelSerializer):
     class Meta:
