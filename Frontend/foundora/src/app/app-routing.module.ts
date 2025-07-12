@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { AreasComponent } from './areas/areas.component';
 import { ObjetosComponent } from './objetos/objetos.component';
+import { ObjetosEncontradosComponent } from './objetosencontrados/objetosencontrados.component';
 import { RegistroComponent } from './registro/registro.component';
 import { InicioComponent } from './inicio/inicio.component'; 
 import { TesoroComponent } from './tesoro/tesoro.component';  
@@ -22,6 +23,11 @@ const routes: Routes = [
     component: ObjetosComponent,
     canActivate: [AuthGuard] 
   }, 
+  { 
+    path: 'objetosencontrados',  // Exactamente igual al nombre del componente
+    component: ObjetosEncontradosComponent,  // Asegúrate que el nombre coincida
+    canActivate: [AuthGuard] 
+  },
   { 
     path: 'inicio',
     component: InicioComponent,

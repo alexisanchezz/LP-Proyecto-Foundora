@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Objeto } from "../model/Objeto.model";
+import { ObjetoEncontrado } from '../model/ObjetoEncontrado.model';
 
 @Injectable({
   providedIn: "root"
@@ -17,7 +18,7 @@ export class ApiService {
     const token = localStorage.getItem('token');
     let headers = new HttpHeaders({
       'Content-Type': 'application/json',
-      'X-API-KEY': 'eCNCVrBt7rw5eS6i2XtR9c' // API Key de tu backend
+      'X-API-KEY': 'eCNCVrBt7rw5eS6i2XtR9c'
     });
 
     if (token) {
@@ -32,11 +33,13 @@ export class ApiService {
     return {
       headers: this.getAuthHeaders()
     };
-  } 
-  /* AUTENTICACIÓN*/ 
-  // Registro de usuario
+  }
+
+  /* ==================== */
+  /* AUTENTICACIÓN (SIN CAMBIOS) */
+  /* ==================== */
+
   registrarUsuario(usuario: any): Observable<any> {
-    // Usa http directamente sin el interceptor para esta solicitud
     return this.http.post(`${this.ApiUrl}usuarios/`, usuario, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -45,36 +48,26 @@ export class ApiService {
     });
   }
 
-  // Login (obtener token)
   login(username: string, password: string): Observable<any> {
-    const url = `${this.ApiUrl}obtener-token/`;
-    return this.http.post(url, { username, password }, {
+    return this.http.post(`${this.ApiUrl}obtener-token/`, { username, password }, {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     });
   }
- 
-  /* OPERACIONES CRUD*/ 
 
-  // Obtener todos los objetos
+  /* ==================== */
+  /* OPERACIONES CRUD OBJETOS (SIN CAMBIOS) */
+  /* ==================== */
+
   getObjetos(): Observable<Objeto[]> {
-    return this.http.get<Objeto[]>(
-      `${this.ApiUrl}objetos/`,
-      this.httpOptions
-    );
+    return this.http.get<Objeto[]>(`${this.ApiUrl}objetos/`, this.httpOptions);
   }
 
-  // Crear nuevo objeto
   postObjeto(objeto: Objeto): Observable<Objeto> {
-    return this.http.post<Objeto>(
-      `${this.ApiUrl}objetos/`,
-      objeto,
-      this.httpOptions
-    );
+    return this.http.post<Objeto>(`${this.ApiUrl}objetos/`, objeto, this.httpOptions);
   }
 
-  // Crear objeto con imagen y campos personalizados para el backend
   postObjetoFormDataBackend(objetoBackend: any, imagen: File): Observable<any> {
     const formData = new FormData();
     formData.append('nombre_objeto', objetoBackend.nombre_objeto);
@@ -87,49 +80,80 @@ export class ApiService {
     if (imagen) {
       formData.append('imagen', imagen);
     }
-    return this.http.post(
-      `${this.ApiUrl}objetos/`,
-      formData,
-      {
-        headers: this.getAuthHeaders().delete('Content-Type')
-      }
-    );
+    return this.http.post(`${this.ApiUrl}objetos/`, formData, {
+      headers: this.getAuthHeaders().delete('Content-Type')
+    });
   }
 
-  // Actualizar objeto
   putObjeto(id: number, objeto: Objeto): Observable<Objeto> {
-    return this.http.put<Objeto>(
-      `${this.ApiUrl}objetos/${id}/`,
-      objeto,
-      this.httpOptions
-    );
+    return this.http.put<Objeto>(`${this.ApiUrl}objetos/${id}/`, objeto, this.httpOptions);
   }
 
-  // Eliminar objeto
   deleteObjeto(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.ApiUrl}objetos/${id}/`, this.httpOptions);
+  }
+
+  /* ==================== */
+  /* OPERACIONES OBJETOS ENCONTRADOS (MODIFICACIONES) */
+  /* ==================== */
+
+  getObjetosEncontrados(): Observable<ObjetoEncontrado[]> {
+    return this.http.get<ObjetoEncontrado[]>(`${this.ApiUrl}objetos-encontrados/`, this.httpOptions);
+  }
+
+  postObjetoEncontrado(objeto: ObjetoEncontrado): Observable<ObjetoEncontrado> {
+    return this.http.post<ObjetoEncontrado>(
+      `${this.ApiUrl}objetos-encontrados/`, 
+      objeto, 
+      this.httpOptions
+    );
+  }
+
+  postObjetoEncontradoFormDataBackend(objetoBackend: any, imagen: File): Observable<any> {
+    const formData = new FormData();
+    formData.append('nombre_objeto', objetoBackend.nombre_objeto);
+    formData.append('descripcion', objetoBackend.descripcion);
+    formData.append('categoria', objetoBackend.categoria);
+    formData.append('fecha', objetoBackend.fecha);
+    formData.append('lugar', objetoBackend.lugar);
+    formData.append('estado', 'encontrado'); // Estado fijo
+    formData.append('usuario', objetoBackend.usuario.toString());
+  
+    if (imagen) {
+      formData.append('imagen', imagen);
+    }
+
+    return this.http.post(
+      `${this.ApiUrl}objetos-encontrados/`, 
+      formData, 
+      { headers: this.getAuthHeaders().delete('Content-Type') }
+    );
+  }
+
+  putObjetoEncontrado(id: number, objeto: ObjetoEncontrado): Observable<ObjetoEncontrado> {
+    return this.http.put<ObjetoEncontrado>(
+      `${this.ApiUrl}objetos-encontrados/${id}/`, 
+      objeto, 
+      this.httpOptions
+    );
+  }
+
+  deleteObjetoEncontrado(id: number): Observable<void> {
     return this.http.delete<void>(
-      `${this.ApiUrl}objetos/${id}/`,
+      `${this.ApiUrl}objetos-encontrados/${id}/`, 
       this.httpOptions
     );
-  }
+  } 
 
   /* ==================== */
-  /* OTRAS OPERACIONES    */
+  /* NOTIFICACIONES Y RECOMPENSAS (SIN CAMBIOS) */
   /* ==================== */
 
-  // Obtener notificaciones
   getNotificaciones(): Observable<any[]> {
-    return this.http.get<any[]>(
-      `${this.ApiUrl}notificaciones/`,
-      this.httpOptions
-    );
+    return this.http.get<any[]>(`${this.ApiUrl}notificaciones/`, this.httpOptions);
   }
 
-  // Obtener recompensas
   getRecompensas(): Observable<any[]> {
-    return this.http.get<any[]>(
-      `${this.ApiUrl}recompensas/`,
-      this.httpOptions
-    );
+    return this.http.get<any[]>(`${this.ApiUrl}recompensas/`, this.httpOptions);
   }
 }
