@@ -26,10 +26,10 @@ export class ObjetosComponent {
 
   obtenerObjetos() {
     this.api.getObjetos().subscribe((res: any[]) => {
-      // Mapeo: si el backend devuelve nombre_objeto, lo convertimos a nombre
       this.objetos = res.map(obj => ({
         ...obj,
-        nombre: obj.nombre || obj.nombre_objeto // Prioriza 'nombre', si no existe usa 'nombre_objeto'
+        nombre: obj.nombre || obj.nombre_objeto,
+        imagen: obj.imagen // Django ya devuelve la URL lista para usar en <img [src]="obj.imagen">
       }));
     });
   }

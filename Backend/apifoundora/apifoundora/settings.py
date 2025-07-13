@@ -84,8 +84,8 @@ CORS_ALLOW_METHODS = [
 
 AUTH_USER_MODEL = 'api.Usuario'
 
-MEDIA_URL = '/objetos/'  # Usa la ruta que ya tienes
-MEDIA_ROOT = os.path.join(BASE_DIR, 'objetos')  # Apunta a tu carpeta existente
+MEDIA_URL = '/media/'  # Ruta estándar para archivos multimedia
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # Carpeta estándar para archivos multimedia
 
 ROOT_URLCONF = 'apifoundora.urls'
 

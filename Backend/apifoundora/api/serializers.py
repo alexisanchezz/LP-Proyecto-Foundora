@@ -33,8 +33,10 @@ class NotificacionSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class ObjetoSerializer(serializers.ModelSerializer):
+    imagen = serializers.ImageField(use_url=True)
+
     class Meta:
-        model = Objeto  # Corregido: sin "models." y nombre exacto
+        model = Objeto
         fields = '__all__'
 
 class ObjetoEncontradoSerializer(serializers.ModelSerializer):
