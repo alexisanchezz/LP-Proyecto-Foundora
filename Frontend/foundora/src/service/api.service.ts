@@ -30,10 +30,12 @@ export class ApiService {
   } 
 
   // Obtener usuario actual (debe existir en el backend)
-  getUsuarioActual(): Observable<any> {
-    // Asegura que el token se envía correctamente
-    return this.http.get(`${this.ApiUrl}usuarios/me/`, {
-      headers: this.getAuthHeaders()
+  getUsuarioActual() {
+    const token = localStorage.getItem('token'); // O como guardes el token
+    return this.http.get('/api/usuarios/me/', {
+      headers: {
+        Authorization: `Token ${token}`
+      }
     });
   }
 

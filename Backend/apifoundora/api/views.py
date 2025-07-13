@@ -1,3 +1,5 @@
+from rest_framework.views import APIView
+from rest_framework.permissions import IsAuthenticated
 from rest_framework import viewsets, status
 from rest_framework.permissions import AllowAny
 from rest_framework.authtoken.views import ObtainAuthToken
@@ -6,6 +8,14 @@ from rest_framework.authtoken.models import Token
 from .models import Usuario, Notificacion, Objeto, ObjetoEncontrado, Publicidad, Recompensa
 from .serializers import UsuarioSerializer, NotificacionSerializer, ObjetoSerializer, ObjetoEncontradoSerializer, PublicidadSerializer, RecompensaSerializer
 from django.contrib.auth.hashers import make_password
+
+# Vista para /api/usuarios/me/
+class UsuarioMeView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        serializer = UsuarioSerializer(request.user)
+        return Response(serializer.data) 
 
 # Vista para el registro y gestión de usuarios
 class UsuarioViewSet(viewsets.ModelViewSet):

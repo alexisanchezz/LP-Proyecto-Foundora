@@ -51,7 +51,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    #'api.middleware.APIKeyMiddleware',
+    'api.middleware.APIKeyMiddleware',
 ]
 
 API_KEY = 'eCNCVrBt7rw5eS6i2XtR9c'

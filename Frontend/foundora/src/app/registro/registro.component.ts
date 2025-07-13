@@ -50,6 +50,7 @@ export class RegistroComponent {
       },
       error: (err) => {
         console.error('Error en el registro:', err);
+        console.log('Detalle del error:', err.error);
         this.messageService.add({
           severity: 'error',
           summary: 'Error',

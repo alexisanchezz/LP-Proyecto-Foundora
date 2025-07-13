@@ -1,7 +1,7 @@
 from rest_framework import routers
 from . import views
 from django.urls import path,include 
-from .views import ObtenerToken, ObjetoEncontradoViewSet
+from .views import ObtenerToken, ObjetoEncontradoViewSet, UsuarioMeView
 
 router = routers.DefaultRouter()
 
@@ -16,4 +16,5 @@ router.register('recompensas', views.RecompensaViewSet)
 urlpatterns = [
     path('',include(router.urls)), 
     path('obtener-token/', ObtenerToken.as_view(), name='obtener-token'),
+    path('usuarios/me/', UsuarioMeView.as_view(), name='usuario-me'),
 ] 
