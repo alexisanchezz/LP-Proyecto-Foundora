@@ -6,9 +6,11 @@ class APIKeyMiddleware:
         self.get_response = get_response
 
     def __call__(self,request):
-        api_key = request.headers.get('X-API-KEY') 
+        # Permitir acceso libre a archivos media
+        if request.path.startswith('/media/'):
+            return self.get_response(request)
 
+        api_key = request.headers.get('X-API-KEY') 
         if api_key and api_key == settings.API_KEY:
             return self.get_response(request)
-        
         return JsonResponse({"error" : "API Key Invalida"},status=403)
