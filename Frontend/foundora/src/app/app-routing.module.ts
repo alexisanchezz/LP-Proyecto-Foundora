@@ -10,6 +10,8 @@ import { InicioComponent } from './inicio/inicio.component';
 import { TesoroComponent } from './tesoro/tesoro.component';  
 import { AuthGuard } from '../service/auth.guard'; 
 
+import { RecompensasComponent } from './recompensas/recompensas.component';
+
 const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },  // Redirección exacta
   { path: 'login', component: LoginComponent },
@@ -43,6 +45,11 @@ const routes: Routes = [
     path: 'tesoro',
     component: TesoroComponent,
     canActivate: [AuthGuard] 
+  },
+  {
+    path: 'recompensas',
+    component: RecompensasComponent,
+    canActivate: [AuthGuard]
   },
   { path: '**', redirectTo: '/inicio' }  // Ruta comodín para cualquier otra URL
 ];

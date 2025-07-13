@@ -33,8 +33,10 @@ import { AreasComponent } from './areas/areas.component';
 import { RegistroComponent } from './registro/registro.component';
 import { ObjetosComponent } from './objetos/objetos.component';
 import { ObjetosEncontradosComponent } from './objetosencontrados/objetosencontrados.component';
+import { RecompensasComponent } from './recompensas/recompensas.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { TesoroComponent } from './tesoro/tesoro.component';
+
 
 
 // Interceptors
@@ -52,6 +54,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
     InicioComponent,
     TesoroComponent,
     UsuarioComponent,
+    RecompensasComponent,
   ],
   imports: [
     BrowserModule,

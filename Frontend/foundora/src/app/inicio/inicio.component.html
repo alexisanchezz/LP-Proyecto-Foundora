@@ -1,26 +1,106 @@
 <header>
-  <nav>
-    <div class="nav-left">FOUNDORA SYSTEM PROYECTO LP</div>
-    <div class="nav-right">
-      <a [routerLink]="['/tesoro']">Tesoro</a>
-      <a href="#">Recompensas</a>
-      <a routerLink="/objetos">Ver Objetos</a>
-      <button class="btn-usuario" routerLink="/usuario"> Usuario</button>
-      <button class="btn-registrar" routerLink="/registro">Registrar</button>
-    </div>
+  <nav class="container">
+    <a routerLink="/inicio" class="logo">Foundora</a>
+    <ul class="nav-links">
+      <li><a routerLink="/inicio">Inicio</a></li>
+      <li><a routerLink="/objetos">Ver Objetos</a></li>
+      <li><a routerLink="/registro">Reportar</a></li>
+      <li><a routerLink="/objetosencontrados">Buscar</a></li>
+      <li><a routerLink="/contacto">Contacto</a></li>
+    </ul>
   </nav>
 </header>
 
-<main class="container">
-  <div class="form-section">
-    <h2>Bienvenido al Sistema de Objetos Perdidos y Encontrados</h2>
-    <p>¿Perdiste algo? ¿Encontraste un objeto y quieres devolverlo a su dueño? 
-      este sistema te permite registrar objetos perdidos o encontrados, facilitando la conexión entre quienes han extraviado pertenencias y quienes las han encontrado.
-       
-    </p> 
+<section class="hero">
+  <div class="container">
+    <h1>Foundora - Plataforma de Objetos Perdidos de la Universidad de Huánuco</h1>
+    <p>Tu portal oficial para encontrar y reportar objetos perdidos. Un servicio exclusivo para la comunidad universitaria de Huánuco, facilitando la recuperación rápida y segura de tus pertenencias.</p>
+    <div class="cta-buttons">
+      <a routerLink="/objetos" class="btn">Ver Objetos</a>
+      <a routerLink="/registro" class="btn btn-secondary">Reportar Pérdida</a>
+      <a routerLink="/objetosencontrados" class="btn btn-secondary">Buscar</a>
+    </div>
   </div>
-  <div class="image-section">
-    <img src="assets/objetoperdido.jpg" alt="Objetos perdidos">
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>¿Qué es Foundora?</h2>
+    <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+      Foundora es una plataforma digital avanzada, diseñada específicamente para gestionar objetos perdidos dentro de la Universidad de Huánuco (UDH). Nuestra tecnología optimiza cada proceso, desde el reporte hasta la recuperación, garantizando que tus objetos regresen a ti de manera eficiente y segura.
+    </p>
+    <div class="features">
+      <div class="feature-card">
+        <div class="feature-icon">💻</div>
+        <h3>Plataforma Digital Inteligente</h3>
+        <p>Diseñada para una gestión eficiente de objetos perdidos en la UDH.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Tecnología de Punta</h3>
+        <p>Integración con herramientas modernas para optimizar procesos y la experiencia del usuario.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🏛️</div>
+        <h3>Respaldo Institucional UDH</h3>
+        <p>Un servicio oficial de la Universidad de Huánuco, garantizando seguridad y confianza.</p>
+      </div>
+    </div>
   </div>
-</main>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Cómo Funciona Foundora</h2>
+    <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+      Foundora simplifica la recuperación de objetos perdidos en la UDH en tres pasos clave. Regístrate, reporta tu objeto con facilidad y busca entre los artículos encontrados, todo desde una interfaz intuitiva.
+    </p>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">1</div>
+        <h3>Registro Sencillo</h3>
+        <p>Accede con tu correo electrónico para una experiencia segura y personalizada.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">2</div>
+        <h3>Reporta tu Objeto</h3>
+        <p>Detalla tu artículo perdido con descripciones, fotos y el lugar exacto de extravío.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">3</div>
+        <h3>Consulta y Contacta</h3>
+        <p>Explora los objetos encontrados y contacta al responsable para coordinar la recuperación.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2>Beneficios para Estudiantes</h2>
+    <p style="text-align: center; font-size: 1.1rem; margin-bottom: 2rem;">
+      Foundora está diseñada para mejorar la vida estudiantil. Minimizamos el estrés y centralizamos la información, fomentando una comunidad más unida y responsable.
+    </p>
+    <div class="benefits">
+      <div class="benefit">
+        <h3>⏰ Ahorro de Tiempo y Estrés</h3>
+        <p>Reduce la ansiedad y el tiempo invertido en la búsqueda de pertenencias.</p>
+      </div>
+      <div class="benefit">
+        <h3>📊 Información Centralizada</h3>
+        <p>Accede a una base de datos actualizada para evitar pérdidas prolongadas y agilizar la búsqueda.</p>
+      </div>
+      <div class="benefit">
+        <h3>🤝 Comunidad Colaborativa</h3>
+        <p>Fomenta un ambiente de apoyo y responsabilidad entre los miembros de la UDH.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <p>&copy; 2024 Foundora UDH. Todos los derechos reservados.</p>
+  </div>
+</footer>
  
