@@ -13,6 +13,8 @@ import { Objeto } from '../../model/Objeto.model';
 })
 export class ObjetosComponent {
   objetos: Objeto[] = [];
+  objetosFiltrados: Objeto[] = [];
+  busqueda: string = '';
   tituloDialogo: string = 'Nuevo Objeto';
   visible: boolean = false;
   objetoDialogo: Objeto = new Objeto();
@@ -40,9 +42,20 @@ export class ObjetosComponent {
       this.objetos = res.map(obj => ({
         ...obj,
         nombre: obj.nombre || obj.nombre_objeto,
-        imagen: obj.imagen // Django ya devuelve la URL lista para usar en <img [src]="obj.imagen">
+        imagen: obj.imagen
       }));
+      this.filtrarObjetos();
     });
+  }
+
+  filtrarObjetos() {
+    const term = this.busqueda.toLowerCase();
+    this.objetosFiltrados = this.objetos.filter(obj =>
+      obj.nombre.toLowerCase().includes(term) ||
+      obj.descripcion.toLowerCase().includes(term) ||
+      obj.categoria.toLowerCase().includes(term) ||
+      obj.lugar.toLowerCase().includes(term)
+    );
   }
 
   editarObjeto(objeto: Objeto) {

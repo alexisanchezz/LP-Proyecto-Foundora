@@ -1,3 +1,4 @@
+import { ToolbarModule } from 'primeng/toolbar';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { MegaMenuModule } from 'primeng/megamenu';
 import { NgModule } from '@angular/core';
@@ -76,6 +77,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
     CarouselModule,
     MegaMenuModule,
     SplitButtonModule,
+    ToolbarModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

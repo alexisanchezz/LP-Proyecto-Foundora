@@ -1,53 +1,58 @@
-<p-dialog 
-  [header]="tituloDialogo" 
-  [(visible)]="visible" 
-  [modal]="true" 
-  [closable]="false" 
-  [style]="{width: '30vw'}">
-
-  <div class="p-fluid">
-    <div class="p-field">
-      <label for="nombre">Nombre</label>
-      <input id="nombre" pInputText [(ngModel)]="objetoDialogo.nombre" name="nombre" required>
+<div class="dialog-container mb-6">
+  <h2 class="text-2xl font-bold text-slate-800 mb-4">Reportar Objeto Encontrado</h2>
+  <p-dialog 
+    [header]="tituloDialogo" 
+    [(visible)]="visible" 
+    [modal]="true" 
+    [closable]="false" 
+    [style]="{width: '30vw', 'border-radius': '1.5rem', 'box-shadow': '0 8px 32px rgba(0,0,0,0.18)'}">
+    <div class="p-fluid">
+      <div class="p-field mb-3">
+        <label for="nombre" class="font-semibold">Nombre</label>
+        <input id="nombre" pInputText [(ngModel)]="objetoDialogo.nombre" name="nombre" required>
+      </div>
+      <div class="p-field mb-3">
+        <label for="descripcion" class="font-semibold">Descripción</label>
+        <textarea id="descripcion" pInputTextarea [(ngModel)]="objetoDialogo.descripcion" name="descripcion" required></textarea>
+      </div>
+      <div class="p-field mb-3">
+        <label for="categoria" class="font-semibold">Categoría</label>
+        <input id="categoria" pInputText [(ngModel)]="objetoDialogo.categoria" name="categoria">
+      </div>
+      <div class="p-field mb-3">
+        <label for="lugar" class="font-semibold">Lugar</label>
+        <input id="lugar" pInputText [(ngModel)]="objetoDialogo.lugar" name="lugar">
+      </div>
+      <div class="p-field mb-3">
+        <label for="fecha" class="font-semibold">Fecha</label>
+        <input id="fecha" type="date" pInputText [(ngModel)]="objetoDialogo.fecha" name="fecha">
+      </div>
+      <div class="p-field mb-3">
+        <label for="imagen" class="font-semibold">Imagen</label>
+        <input type="file" id="imagen" (change)="onImagenSeleccionada($event)">
+      </div>
     </div>
+    <ng-template pTemplate="footer">
+      <button pButton type="button" label="Cancelar" class="p-button-secondary mr-2" (click)="visible = false"></button>
+      <button pButton type="button" label="Guardar" class="p-button-primary" (click)="guardarObjeto()"></button>
+    </ng-template>
+  </p-dialog>
+</div>
 
-    <div class="p-field">
-      <label for="descripcion">Descripción</label>
-      <textarea id="descripcion" pInputTextarea [(ngModel)]="objetoDialogo.descripcion" name="descripcion" required></textarea>
+<!-- Toolbar personalizado para acciones principales -->
+<p-toolbar [style]="{ 'border-radius': '2rem', 'padding': '1rem 1rem 1rem 1.5rem', 'margin-bottom': '2rem' }">
+  <ng-template #start>
+    <div class="flex items-center gap-4">
+      <p-button label="Nuevo Objeto" icon="pi pi-plus" (onClick)="abrirDialogo()" styleClass="p-button-primary mr-3"></p-button>
+      <p-button label="Inicio" icon="pi pi-home" routerLink="/inicio" styleClass="p-button-success mr-3"></p-button>
+      <p-button label="Objetos Perdidos" icon="pi pi-exclamation-circle" (onClick)="irObjetosPerdidos()" styleClass="p-button-info mr-3"></p-button>
+      <input pInputText type="text" placeholder="Buscar objeto..." [(ngModel)]="busqueda" autofocus class="ml-3" (ngModelChange)="filtrarObjetos()" />
     </div>
-
-    <div class="p-field">
-      <label for="categoria">Categoría</label>
-      <input id="categoria" pInputText [(ngModel)]="objetoDialogo.categoria" name="categoria">
-    </div>
-
-    <div class="p-field">
-      <label for="lugar">Lugar</label>
-      <input id="lugar" pInputText [(ngModel)]="objetoDialogo.lugar" name="lugar">
-    </div>
-
-    <div class="p-field">
-      <label for="fecha">Fecha</label>
-      <input id="fecha" type="date" pInputText [(ngModel)]="objetoDialogo.fecha" name="fecha">
-    </div>
-
-    <div class="p-field">
-      <label for="imagen">Imagen</label>
-      <input type="file" id="imagen" (change)="onImagenSeleccionada($event)">
-    </div>
-  </div>
-
-  <ng-template pTemplate="footer">
-    <button pButton type="button" label="Cancelar" class="p-button-secondary" (click)="visible = false"></button>
-    <button pButton type="button" label="Guardar" class="p-button-primary" (click)="guardarObjeto()"></button>
   </ng-template>
-</p-dialog>
-
-<!-- SplitButton para acciones principales -->
-<p-splitButton label="Nuevo Objeto Encontrado" icon="pi pi-plus" [model]="splitItems" (onClick)="abrirDialogo()" styleClass="mb-3"></p-splitButton>
-
+</p-toolbar>
+ 
 <!-- Carousel de objetos encontrados -->
-<p-carousel [value]="objetos" [numVisible]="3" [numScroll]="1" styleClass="mb-5">
+<p-carousel [value]="objetosFiltrados" [numVisible]="3" [numScroll]="1" styleClass="mb-5">
   <ng-template pTemplate="item" let-obj>
     <div class="p-4 bg-white rounded-xl shadow-md border border-slate-200 flex flex-col items-center justify-between h-full">
       <img *ngIf="obj.imagen" [src]="api.baseUrl + obj.imagen" alt="Imagen" class="mb-3 rounded-lg" style="width:120px; height:120px; object-fit:cover;" />

@@ -12,6 +12,8 @@ import { ObjetoEncontrado } from '../../model/ObjetoEncontrado.model';
 })
 export class ObjetosEncontradosComponent implements OnInit {
   objetos: ObjetoEncontrado[] = [];
+  objetosFiltrados: ObjetoEncontrado[] = [];
+  busqueda: string = '';
   tituloDialogo: string = 'Nuevo Objeto Encontrado';
   visible: boolean = false;
   objetoDialogo: ObjetoEncontrado = new ObjetoEncontrado();
@@ -40,7 +42,18 @@ export class ObjetosEncontradosComponent implements OnInit {
         ...obj,
         nombre: obj.nombre || obj.nombre_objeto
       }));
+      this.filtrarObjetos();
     });
+  }
+
+  filtrarObjetos() {
+    const term = this.busqueda.toLowerCase();
+    this.objetosFiltrados = this.objetos.filter(obj =>
+      obj.nombre.toLowerCase().includes(term) ||
+      obj.descripcion.toLowerCase().includes(term) ||
+      obj.categoria.toLowerCase().includes(term) ||
+      obj.lugar.toLowerCase().includes(term)
+    );
   }
 
   editarObjeto(objeto: ObjetoEncontrado) {
