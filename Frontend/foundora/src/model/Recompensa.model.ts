@@ -1,8 +1,7 @@
 export interface Recompensa {
-  id?: number;
-  monto: number;
-  descripcion: string;
-  fecha: string;
-  usuario: number; 
-  objeto: number; 
+  id: number;
+  titulo: string;
+  imagen: string;
+  descripcion?: string;
+  puntos?: number;
 }

@@ -37,9 +37,7 @@ import { ObjetosEncontradosComponent } from './objetosencontrados/objetosencontr
 import { RecompensasComponent } from './recompensas/recompensas.component';
 import { InicioComponent } from './inicio/inicio.component';
 import { TesoroComponent } from './tesoro/tesoro.component';
-
-
-
+ 
 // Interceptors
 import { TokenInterceptor } from '../service/token.interceptor';
 import { UsuarioComponent } from './usuario/usuario.component';

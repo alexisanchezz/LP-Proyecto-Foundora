@@ -165,6 +165,6 @@ export class ApiService {
   }
 
   getRecompensas(): Observable<Recompensa[]> {
-    return this.http.get<Recompensa[]>(`${this.ApiUrl}recompensas/`, this.httpOptions);
+    return this.http.get<Recompensa[]>(`${this.ApiUrl}/recompensas`);
   }
 }

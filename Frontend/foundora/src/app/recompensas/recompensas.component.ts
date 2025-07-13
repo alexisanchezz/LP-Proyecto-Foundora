@@ -6,14 +6,19 @@ import { ApiService } from '../../service/api.service';
   selector: 'app-recompensas',
   standalone: false,
   templateUrl: './recompensas.component.html',
-  styleUrls: ['./recompensas.component.css']
+  styleUrls: ['./recompensas.component.css'],
+  providers: [ApiService]
 })
 export class RecompensasComponent implements OnInit {
-  recompensas: Recompensa[] = [];
+  recompensas: Recompensa[];
 
   constructor(private recompensaService: ApiService) {}
 
   ngOnInit(): void {
+    this.cargarRecompensas();
+  }
+
+  private cargarRecompensas(): void {
     this.recompensaService.getRecompensas().subscribe({
       next: (data: Recompensa[]) => {
         this.recompensas = data;
@@ -24,3 +29,4 @@ export class RecompensasComponent implements OnInit {
     });
   }
 }
+ 

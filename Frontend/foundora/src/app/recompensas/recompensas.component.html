@@ -1,26 +1,24 @@
-<h2 class="p-text-center p-mb-4">Listado de Recompensas</h2>
-<div *ngIf="recompensas.length === 0" class="p-text-center p-mt-5 p-text-secondary">
-  No hay recompensas disponibles.
-</div>
-<div class="p-grid p-3" *ngIf="recompensas.length > 0">
-  <div 
-    class="p-col-12 p-md-6 p-lg-4" 
-    *ngFor="let recompensa of recompensas">
-    <p-card 
-      header="🏆 Recompensa disponible" 
-      subheader="{{ recompensa.fecha | date: 'dd/MM/yyyy' }}"
-      styleClass="shadow-2 border-round-lg mb-4">
-      <ng-template pTemplate="content">
-        <div class="p-text-bold text-lg mb-2">
-          💰 S/. {{ recompensa.monto }}
-        </div>
-        <div class="text-sm mb-2">
-          📄 {{ recompensa.descripcion }}
-        </div>
-        <div class="text-sm text-secondary">
-          👤 Usuario ID: {{ recompensa.usuario }}
-        </div>
-      </ng-template>
-    </p-card>
+<div class="recompensas-container">
+  <!-- Encabezado -->
+  <div class="header">
+    <img src="assets/star-icon.png" alt="Icono estrella" class="icono" />
+    <h1>Registro de Recompensas</h1>
   </div>
-</div>
+
+  <!-- Título de sección -->
+  <h2 class="subtitulo">Recompensas</h2>
+
+  <!-- Filtro de estado -->
+  <div class="estado-filtro">
+    <span class="activo">&#9679; Activas</span>
+  </div>
+
+  <!-- Tarjetas de recompensas -->
+  <div class="tarjetas">
+    <div class="tarjeta" *ngFor="let recompensa of recompensas">
+      <img [src]="recompensa.imagen" [alt]="recompensa.titulo" class="tarjeta-img" />
+      <div class="tarjeta-titulo">{{ recompensa.titulo }}</div>
+      <button class="btn-canjear" disabled>Canjear Recompensa</button>
+    </div>
+  </div>
+</div> 
