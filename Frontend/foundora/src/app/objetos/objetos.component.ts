@@ -1,5 +1,6 @@
 
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../../service/api.service';
 import { Objeto } from '../../model/Objeto.model';
 
@@ -17,8 +18,18 @@ export class ObjetosComponent {
   objetoDialogo: Objeto = new Objeto();
   nuevoObjeto: boolean = true;
   imagenSeleccionada: File | null = null;
+  splitItems = [
+    {
+      label: 'Objetos Encontrados',
+      icon: 'pi pi-search',
+      command: () => this.irObjetosEncontrados()
+    }
+  ];
 
-  constructor(public api: ApiService) {}
+  constructor(public api: ApiService, private router: Router) {}
+  irObjetosEncontrados() {
+    this.router.navigate(['/objetosencontrados']);
+  }
 
   ngOnInit() {
     this.obtenerObjetos();

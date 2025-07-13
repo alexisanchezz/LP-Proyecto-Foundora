@@ -1,3 +1,5 @@
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { MegaMenuModule } from 'primeng/megamenu';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -23,6 +25,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ToastModule } from 'primeng/toast';
+import { CarouselModule } from 'primeng/carousel';
 
 // Components
 import { LoginComponent } from './login/login.component';
@@ -36,6 +39,7 @@ import { TesoroComponent } from './tesoro/tesoro.component';
 
 // Interceptors
 import { TokenInterceptor } from '../service/token.interceptor';
+import { UsuarioComponent } from './usuario/usuario.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +51,7 @@ import { TokenInterceptor } from '../service/token.interceptor';
     ObjetosEncontradosComponent,
     InicioComponent,
     TesoroComponent,
+    UsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,6 +70,9 @@ import { TokenInterceptor } from '../service/token.interceptor';
     ConfirmDialogModule,
     DialogModule,
     ToastModule,
+    CarouselModule,
+    MegaMenuModule,
+    SplitButtonModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },

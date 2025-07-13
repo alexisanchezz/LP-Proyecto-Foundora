@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ApiService } from '../../service/api.service';
 import { ObjetoEncontrado } from '../../model/ObjetoEncontrado.model';
 
@@ -16,8 +17,18 @@ export class ObjetosEncontradosComponent implements OnInit {
   objetoDialogo: ObjetoEncontrado = new ObjetoEncontrado();
   nuevoObjeto: boolean = true;
   imagenSeleccionada: File | null = null;
+  splitItems = [
+    {
+      label: 'Objetos Perdidos',
+      icon: 'pi pi-exclamation-circle',
+      command: () => this.irObjetosPerdidos()
+    }
+  ];
 
-  constructor(public api: ApiService) {}
+  constructor(public api: ApiService, private router: Router) {}
+  irObjetosPerdidos() {
+    this.router.navigate(['/objetos']);
+  }
 
   ngOnInit() {
     this.obtenerObjetosEncontrados();

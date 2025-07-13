@@ -26,6 +26,14 @@ export class ApiService {
     }
 
     return headers;
+  } 
+
+  // Obtener usuario actual (debe existir en el backend)
+  getUsuarioActual(): Observable<any> {
+    // Asegura que el token se envía correctamente
+    return this.http.get(`${this.ApiUrl}usuarios/me/`, {
+      headers: this.getAuthHeaders()
+    });
   }
 
   // Atajo para opciones HTTP

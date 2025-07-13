@@ -45,39 +45,25 @@
   </ng-template>
 </p-dialog>
 
-<!-- Botón para abrir el diálogo de nuevo objeto -->
-<button pButton type="button" icon="pi pi-plus" label="Nuevo objeto" class="mb-3" (click)="abrirDialogo()"></button>
- 
-<!-- Botón para llevar a Objetos Encontrados --> 
-<button pButton type="button" icon="pi pi-search" label="Objetos Encontrados" ></button>
+<!-- SplitButton para acciones principales -->
+<p-splitButton label="Nuevo objeto" icon="pi pi-plus" [model]="splitItems" (onClick)="abrirDialogo()" styleClass="mb-3"></p-splitButton>
 
-<!-- Tabla de objetos -->
-<p-table [value]="objetos">
-  <ng-template pTemplate="header">
-    <tr>
-      <th>Nombre</th>
-      <th>Descripción</th>
-      <th>Categoría</th>
-      <th>Lugar</th>
-      <th>Fecha</th>
-      <th>Imagen</th>
-      <th>Acciones</th>
-    </tr>
-  </ng-template>
-  <ng-template pTemplate="body" let-obj>
-    <tr>
-      <td>{{ obj.nombre }}</td>
-      <td>{{ obj.descripcion }}</td>
-      <td>{{ obj.categoria }}</td>
-      <td>{{ obj.lugar }}</td>
-      <td>{{ obj.fecha | date }}</td>
-      <td>
-        <img *ngIf="obj.imagen" [src]="obj.imagen" alt="Imagen" width="80" />
-      </td>
-      <td>
+<!-- Carousel de objetos -->
+<p-carousel [value]="objetos" [numVisible]="3" [numScroll]="1" styleClass="mb-5">
+  <ng-template pTemplate="item" let-obj>
+    <div class="p-4 bg-white rounded-xl shadow-md border border-slate-200 flex flex-col items-center justify-between h-full">
+      <img *ngIf="obj.imagen" [src]="obj.imagen" alt="Imagen" class="mb-3 rounded-lg" style="width:120px; height:120px; object-fit:cover;" />
+      <div class="w-full">
+        <h3 class="text-lg font-bold text-slate-900 mb-1">{{ obj.nombre }}</h3>
+        <p class="text-sm text-slate-700 mb-1">{{ obj.descripcion }}</p>
+        <p class="text-xs text-slate-500 mb-1">Categoría: {{ obj.categoria }}</p>
+        <p class="text-xs text-slate-500 mb-1">Lugar: {{ obj.lugar }}</p>
+        <p class="text-xs text-slate-500 mb-2">Fecha: {{ obj.fecha | date }}</p>
+      </div>
+      <div class="flex gap-2 mt-2">
         <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text" (click)="editarObjeto(obj)"></button>
         <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-text" (click)="eliminarObjeto(obj.id)"></button>
-      </td>
-    </tr>
+      </div>
+    </div>
   </ng-template>
-</p-table>
+</p-carousel>

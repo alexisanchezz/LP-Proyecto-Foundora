@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { AreasComponent } from './areas/areas.component';
 import { ObjetosComponent } from './objetos/objetos.component';
 import { ObjetosEncontradosComponent } from './objetosencontrados/objetosencontrados.component';
+import { UsuarioComponent } from './usuario/usuario.component';
 import { RegistroComponent } from './registro/registro.component';
 import { InicioComponent } from './inicio/inicio.component'; 
 import { TesoroComponent } from './tesoro/tesoro.component';  
@@ -13,6 +14,11 @@ const routes: Routes = [
   { path: '', redirectTo: '/inicio', pathMatch: 'full' },  // Redirección exacta
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
+  {
+    path: 'usuario',
+    component: UsuarioComponent,
+    canActivate: [AuthGuard]
+  },
   { 
     path: 'areas',
     component: AreasComponent,
