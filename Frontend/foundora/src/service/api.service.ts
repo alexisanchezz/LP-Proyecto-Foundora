@@ -2,8 +2,7 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders, HttpErrorResponse } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Objeto } from "../model/Objeto.model";
-import { ObjetoEncontrado } from '../model/ObjetoEncontrado.model';
-import { Recompensa } from '../model/Recompensa.model';
+import { ObjetoEncontrado } from '../model/ObjetoEncontrado.model'; 
 
 @Injectable({
   providedIn: "root"
@@ -163,8 +162,5 @@ export class ApiService {
   getNotificaciones(): Observable<any[]> {
     return this.http.get<any[]>(`${this.ApiUrl}notificaciones/`, this.httpOptions);
   }
-
-  getRecompensas(): Observable<Recompensa[]> {
-    return this.http.get<Recompensa[]>(`${this.ApiUrl}/recompensas`);
-  }
+ 
 }

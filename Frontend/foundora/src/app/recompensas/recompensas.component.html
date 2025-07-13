@@ -1,24 +1,70 @@
-<div class="recompensas-container">
-  <!-- Encabezado -->
-  <div class="header">
-    <img src="assets/star-icon.png" alt="Icono estrella" class="icono" />
-    <h1>Registro de Recompensas</h1>
-  </div>
-
-  <!-- Título de sección -->
-  <h2 class="subtitulo">Recompensas</h2>
-
-  <!-- Filtro de estado -->
-  <div class="estado-filtro">
-    <span class="activo">&#9679; Activas</span>
-  </div>
-
-  <!-- Tarjetas de recompensas -->
-  <div class="tarjetas">
-    <div class="tarjeta" *ngFor="let recompensa of recompensas">
-      <img [src]="recompensa.imagen" [alt]="recompensa.titulo" class="tarjeta-img" />
-      <div class="tarjeta-titulo">{{ recompensa.titulo }}</div>
-      <button class="btn-canjear" disabled>Canjear Recompensa</button>
+<div class="rewards-container">
+  <h1>Registro de Recompensas</h1>
+  
+  <div class="rewards-header">
+    <h2>Recompensas</h2>
+    <div class="rewards-status">
+      <span class="status-label">Activas</span>
+      <button class="config-btn">Configurar</button>
     </div>
   </div>
+
+  <div class="divider"></div>
+
+  <!-- Recompensa 1 -->
+  <div class="reward-item">
+    <div class="reward-image-placeholder">
+      <img src="assets/audifonos_gamer.jpg" alt="Ver serie" class="reward-image"> 
+    </div>
+    <div class="reward-details">
+      <h3>Audifonos Gamer GTH3 - Coolbox</h3>
+      <button class="redeem-btn">Canjear Recompensa</button>
+    </div>
+  </div>
+
+  <!-- Recompensa 2 -->
+  <div class="reward-item">
+    <div class="reward-image-placeholder">
+      <img src="assets/banner_netflix.jpeg" alt="Refresco" class="reward-image"> 
+    </div>
+    <div class="reward-details">
+      <h3>Cuenta de Netflix por 2 meses</h3>
+      <button class="redeem-btn">Canjear Recompensa</button>
+    </div>
+  </div>
+
+  <!-- Recompensa 3 -->
+  <div class="reward-item">
+    <div class="reward-image-placeholder">
+      <img src="assets/vale_comida.jpg" alt="Jugar" class="reward-image"> 
+    </div>
+    <div class="reward-details">
+      <h3>Vale de Hamburguesas - La ventanita</h3>
+      <button class="redeem-btn">Canjear Recompensa</button>
+    </div>
+  </div>
+
+  <!-- Recompensa 4 -->
+  <div class="reward-item">
+    <div class="reward-image-placeholder">
+      <img src="assets/steam.jpg" alt="Dulce" class="reward-image"> 
+    </div>
+    <div class="reward-details">
+      <h3>Cupón de Descuento Steam Store</h3>
+      <button class="redeem-btn">Canjear Recompensa</button>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Recompensa 5 -->
+  <div class="reward-item">
+    <div class="reward-image-placeholder">
+      <img src="assets/samba.jpg" alt="Película" class="reward-image"> 
+    </div>
+    <div class="reward-details">
+      <h3>Zapatillas SambaOG - talla 43</h3>
+      <button class="redeem-btn">Canjear Recompensa</button>
+    </div>
+  </div>
 </div> 
