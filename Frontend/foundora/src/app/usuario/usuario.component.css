@@ -76,3 +76,15 @@ img {
   height: auto;
   border-radius: 50%;
 }
+
+button {
+  display: block;
+  margin: 0 auto;
+  background-color: #1e3a8a;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
