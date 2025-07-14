@@ -11,6 +11,11 @@ import { ObjetoEncontrado } from '../../model/ObjetoEncontrado.model';
   providers: [ApiService]
 })
 export class ObjetosEncontradosComponent implements OnInit {
+  // ...existing code...
+  reclamarObjeto(objeto: ObjetoEncontrado) {
+    // Aquí puedes implementar la lógica para reclamar el objeto
+    alert('Has reclamado el objeto: ' + objeto.nombre);
+  }
   objetos: ObjetoEncontrado[] = [];
   objetosFiltrados: ObjetoEncontrado[] = [];
   busqueda: string = '';

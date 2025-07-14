@@ -64,6 +64,7 @@
         <p class="text-xs text-slate-500 mb-2">Fecha: {{ obj.fecha | date }}</p>
       </div>
       <div class="flex gap-2 mt-2">
+        <button pButton label="Reclamar" icon="pi pi-check" class="p-button-success" (click)="reclamarObjeto(obj)"></button>
         <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-text" (click)="editarObjeto(obj)"></button>
         <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger p-button-text" (click)="eliminarObjeto(obj.id)"></button>
       </div>

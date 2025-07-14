@@ -14,6 +14,7 @@ import { Objeto } from '../../model/Objeto.model';
 export class ObjetosComponent {
   objetos: Objeto[] = [];
   objetosFiltrados: Objeto[] = [];
+  objetosEncontradosFiltrados: Objeto[] = [];
   busqueda: string = '';
   tituloDialogo: string = 'Nuevo Objeto';
   visible: boolean = false;

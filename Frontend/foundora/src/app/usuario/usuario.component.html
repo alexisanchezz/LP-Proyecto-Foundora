@@ -26,6 +26,12 @@
         <span>Protegida</span>
       </div>
     </div>
+    
+    <div class="flex justify-center mt-6 w-full">
+      <div class="flex justify-center w-full">
+        <button pButton label="Cerrar sesión" icon="pi pi-sign-out" class="p-button-danger" (click)="cerrarSesion()"></button>
+      </div>
+    </div>
 
     <ng-template #noUsuario>
       <p class="no-user">No se encontró información del usuario.</p>

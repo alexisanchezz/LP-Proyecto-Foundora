@@ -10,6 +10,15 @@ import { Usuario } from '../../model/Usuario.model';
   providers: [ApiService]
 })
 export class UsuarioComponent implements OnInit {
+
+  cerrarSesion() {
+    localStorage.removeItem('token');
+    // Si guardas el apikey en localStorage, bórralo también:
+    localStorage.removeItem('apikey');
+    // Redirigir al login
+    window.location.href = '/login';
+    // Si usas Router, puedes inyectarlo y usar this.router.navigate(['/login']);
+  }
   usuario: Usuario | null = null;
 
   constructor(private api: ApiService) {}
