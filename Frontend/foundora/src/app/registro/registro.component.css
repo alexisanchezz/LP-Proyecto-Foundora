@@ -5,6 +5,18 @@
   box-sizing: border-box;
 }
 
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
 /* Contenedor principal con fondo azul */
 .register-wrapper {
   width: 100%;
@@ -48,8 +60,7 @@
   text-align: center;
   padding: 2rem;
   font-size: 1.8rem;
-  font-weight: bold;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  font-weight: bold; 
 }
 
 /* Caja del formulario */

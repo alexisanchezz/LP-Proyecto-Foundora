@@ -3,21 +3,26 @@
   justify-content: center;
   align-items: center;
   gap: 2rem;
-  margin: 2rem;
   flex-wrap: wrap;
+  height: 100vh; /* Altura completa de la pantalla */
+  background-color: #1e3a8a; /* Azul oscuro Tailwind-like */
+  padding: 2rem;
+  box-sizing: border-box;
 }
 
 .info-box {
-  background-color: #fff;
+  background-color: #ffffff;
   padding: 2rem;
   border: 1px solid #ddd;
   border-radius: 10px;
   max-width: 700px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  color: #1e293b; /* Texto oscuro */
 }
 
 .info-box h2 {
   margin-top: 0;
+  color: #0f172a; /* Azul muy oscuro */
 }
 
 .info-box .detalles {
@@ -26,5 +31,38 @@
 
 .mapa-box img {
   max-width: 400px;
-  height: auto;
+  height: auto; 
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  cursor: pointer;
 }
+
+/* Efecto al pasar el mouse */
+.mapa-box img:hover {
+  transform: scale(1.05); 
+}
+
+
+/* Animación de aparición */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animated {
+  opacity: 0;
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.delay-1 {
+  animation-delay: 0.2s;
+}
+.delay-2 {
+  animation-delay: 0.4s;
+}
+
