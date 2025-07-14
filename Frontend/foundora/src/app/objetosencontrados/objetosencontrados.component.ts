@@ -10,12 +10,16 @@ import { ObjetoEncontrado } from '../../model/ObjetoEncontrado.model';
   styleUrls: ['./objetosencontrados.component.css'],
   providers: [ApiService]
 })
-export class ObjetosEncontradosComponent implements OnInit {
-  // ...existing code...
-  reclamarObjeto(objeto: ObjetoEncontrado) {
-    // Aquí puedes implementar la lógica para reclamar el objeto
-    alert('Has reclamado el objeto: ' + objeto.nombre);
+export class ObjetosEncontradosComponent implements OnInit { 
+
+  reclamarObjeto(obj: any) {
+    const numero = '51959294490'; // Número de WhatsApp del usuario
+    const mensaje = `Hola, quiero reclamar el objeto "${obj.nombre}". ¿Podrías darme más información?`;
+
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(mensaje)}`;
+    window.open(url, '_blank');
   }
+  
   objetos: ObjetoEncontrado[] = [];
   objetosFiltrados: ObjetoEncontrado[] = [];
   busqueda: string = '';
